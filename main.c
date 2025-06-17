@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 12:21:03 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/16 17:21:46 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/06/17 13:06:57 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,51 +42,137 @@ int	ft_test(int key, void *param)
 		mlx_destroy_window(vars->mlx_ptr, vars->win_ptr);
 		exit (0);
 	}
-	ft_printf("%d\n", key);
 	return (0);
 }
-size_t	ft_map_hight(int fd)
+int	**ft_free_array(int **array, int hight)
 {
-	char	*map;
-	size_t	i;
-	int		len;
+	int	i;
 
-	map = get_next_line(fd);
-	len = ft_strlen(map);
 	i = 0;
-	while(map != NULL)
+	while (i < hight)
 	{
-		map = get_next_line(fd);
-		if (ft_strlen(map) != len)
-			return (0);
+		free (array[i]);
 		i++;
 	}
-	return (i);
+	free (array);
+	return (NULL);
 }
 
-int	**ft_map_array(int fd)
+int	*ft_map_store_line_int(int *map, size_t len)
 {
-	size_t	hight;
+	size_t	i;
+	int		*array;
+
+	 array = malloc(len * sizeof(int) + 1);
+	 if (!array)
+	 	return (NULL);
+	 i = 0;
+	 while (i < len)
+	 {
+		array[i] = map[i];
+		i++;
+	 }
+	 array[i] = 0;
+	 return (array);
+}
+
+int	*ft_map_store_line_char(char *map)
+{
 	size_t	len;
 	size_t	i;
-	int		**array;
+	int		*array;
 
-	hight = ft_map_hight(fd);
-	if (hight == 0)
-		return (0);
-	*array = malloc(hight * sizeof(char) + 1);
-	if (!array)
+	 len = ft_strlen(map);
+	 array = malloc(len * sizeof(int) + 1);
+	 if (!array)
+	 	return (NULL);
+	 i = 0;
+	 
+	 while (i < len)
+	 {
+		array[i] = map[i];
+		i++;
+	 }
+	 array[i] = 0;
+	 return (array);
+}
+int	**ft_map_array(char *map, int hight, int **source_array)
+{
+	int		**dest_array;
+	int		i;
+	size_t	len;
+
+	len = ft_strlen(map);
+	dest_array = malloc((hight + 1) * sizeof(int) + 1);
+	if (!dest_array)
 	{
-		//free stuff
+		ft_free_array(source_array, hight);
 		return (NULL);
 	}
-	*array[hight] = '\0';
-	len = ft_strlen(get_next_line(fd));
 	i = 0;
-	while (i < len)
+	while (i < hight)
 	{
-		ft_save_map(fd);
+		dest_array[i] = ft_map_store_line_int(source_array[i], len);
+		if (!dest_array[i])
+			return (NULL);
+		free (source_array[i]);
+		i++;
 	}
+	free (source_array);
+	dest_array[i] = ft_map_store_line_char(map);
+	dest_array[i + 1] = 0;
+	return (dest_array);
+}
+
+int	**ft_map(int fd)
+{
+	int		**array;
+	int		hight;
+	char	*map;
+
+	map = get_next_line(fd);
+	hight = 1;
+	array = malloc(hight * sizeof(int) + 1);
+	if (!array)
+		return (0);
+	array[0] = ft_map_store_line_char(map);
+	if (!array[0])
+		return (NULL);
+	array[1] = 0;
+	map = get_next_line(fd);
+	while (map != NULL)
+	{
+		array = ft_map_array(map, hight, array);
+		if (!array)
+			return (NULL);
+		map = get_next_line(fd);
+		hight++;
+	}
+	return (array);
+}
+
+int	ft_map_check(int **map)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	i = 0;
+	j = 0;
+	while (map[i][j + 1] != 0)
+		j++;
+	len = j;
+	printf("%d\n", len);
+	while (map[i] != 0)
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 int	main(void)
@@ -99,8 +185,27 @@ int	main(void)
 	int		img_width;
 	int		img_height;
 	int		fd = open("map1.ber", O_RDONLY);
+	int		**map;
+
+	map = ft_map(fd);
+	ft_map_check(map);
+	if (!map)
+		return (0);
+	i = 0;
+	while (map[i] != 0)
+	{
+		j = 0;
+		while (map[i][j + 1] != 0)
+		{
+			printf("%c ", map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 	
-	ft_map_hight(fd, &vars);
+	if (!map)
+		return (0);
 	vars.mlx_ptr = mlx_init();
 	if (!vars.mlx_ptr)
 	{
