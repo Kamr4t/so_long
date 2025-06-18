@@ -1,14 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_error_check.c                                  :+:      :+:    :+:   */
+/*   map_screen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 17:09:53 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/17 17:12:16 by ancamara         ###   ########.fr       */
+/*   Created: 2025/06/18 11:17:45 by ancamara          #+#    #+#             */
+/*   Updated: 2025/06/18 11:24:13 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "map.h"
 
+int	ft_build_screen()
+{
+	t_vars screen;
+
+	screen.mlx_ptr = 
+}
