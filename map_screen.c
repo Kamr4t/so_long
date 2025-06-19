@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 11:17:45 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/19 12:28:30 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:55:35 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ static int ft_key_press(int key, void *param)
 		mlx_destroy_window(vars->mlx_ptr, vars->win_ptr);
 		exit (0);
 	}
+	if (key == 119)
+	{
+		ft_move_logic(key, param);
+	}
 	return (0);
 }
 
-static t_images	ft_tiles(t_display vars)
+t_images	ft_tiles(t_display vars)
 {
 	t_images	tiles;
 	int			img_width;
@@ -74,16 +78,19 @@ int	ft_build_win(char **map)
 	t_display	display;
 	int			len;
 	int			hight;
+	int			key;
 	
 	len = ft_strlen_nl(map[0]);
 	hight = ft_map_hight(map);
 	display.mlx_ptr = mlx_init();
+	display.map = map;
 	//if mlx init fails in returns NULL
 	//include fail check
 	display.win_ptr = mlx_new_window(display.mlx_ptr, len * 128, hight * 128, "MY GAME");
 	//same as above
 	ft_put_on_screen(map, display);
-	mlx_key_hook(display.win_ptr, ft_key_press, &display);
+	key = mlx_key_hook(display.win_ptr, ft_key_press, &display);
+	//ft_move_logic(key, display, map);
 	mlx_loop(display.mlx_ptr);
 	return (0);
 }
