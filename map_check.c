@@ -6,13 +6,13 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 08:35:30 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/18 09:48:33 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/06/19 09:44:23 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "so_long.h"
 
-int	ft_map_object_count(int c)
+static int	ft_map_object_count(int c)
 {
 	static int	count_col = 0;
 	static int	count_player = 0;
@@ -37,7 +37,7 @@ int	ft_map_object_count(int c)
 	return (1);
 }
 
-int	ft_map_valid(int c)
+static int	ft_map_valid(int c)
 {
 	if (c == '0')
 		return (1);
@@ -52,7 +52,7 @@ int	ft_map_valid(int c)
 	return (0);
 }
 
-int	ft_map_rec(char **map)
+static int	ft_map_rec(char **map)
 {
 	int		len_base;
 	int		len_tmp;
@@ -70,15 +70,13 @@ int	ft_map_rec(char **map)
 	return (1);
 }
 
-int	ft_map_wall_check(char **map)
+static int	ft_map_wall_check(char **map)
 {
 	int		len;
 	int		hight;
 	int		i;
 
-	hight = 0;
-	while (map[hight] != NULL)
-		hight++;
+	hight = ft_map_hight(map);
 	len = ft_strlen_nl(map[0]);
 	i = 0;
 	while (i < len)

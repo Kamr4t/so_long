@@ -6,11 +6,11 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:29:07 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/18 09:28:45 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/06/19 09:45:23 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "map.h"
+#include "so_long.h"
 
 char	*ft_free_map(char **map, int hight)
 {
@@ -26,7 +26,7 @@ char	*ft_free_map(char **map, int hight)
 	return (NULL);
 }
 
-int	ft_map_hight(int fd)
+static int	ft_map_file_hight(int fd)
 {
 	int		hight;
 	char	*line;
@@ -42,17 +42,7 @@ int	ft_map_hight(int fd)
 	return (hight);
 }
 
-int	ft_strlen_nl(char *s)
-{
-	int		i;
-
-	i = 0;
-	while (s[i] != '\0' && s[i] != '\n')
-		i++;
-	return (i);
-}
-
-char	*ft_map_line(int fd)
+static char	*ft_map_line(int fd)
 {
 	int		len;
 	int		i;
@@ -82,7 +72,7 @@ char	**ft_map_array(int fd)
 	int		fd2;
 	int		i;
 
-	hight = ft_map_hight(fd);
+	hight = ft_map_file_hight(fd);
 	fd2 = open("map1.ber", O_RDONLY);
 	map = malloc((hight + 1) * sizeof(char *));
 	if (!map)

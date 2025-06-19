@@ -1,44 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 17:28:45 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/19 09:36:45 by ancamara         ###   ########.fr       */
+/*   Created: 2025/06/19 09:38:55 by ancamara          #+#    #+#             */
+/*   Updated: 2025/06/19 09:47:16 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(void)
+int	ft_strlen_nl(char *s)
 {
-	char	**map;
-	int		fd;
-	size_t	i;
-	size_t	j;
+	int		i;
 
-	fd = open("map1.ber", O_RDONLY);
-	map = ft_map_array(fd);
-	if (map == NULL)
-		return (0);
-	int test = ft_map_check(map);
-	printf("%d\n", test);
+	i = 0;
+	while (s[i] != '\0' && s[i] != '\n')
+		i++;
+	return (i);
+}
+
+int	ft_map_hight(char **map)
+{
+	int	i;
+
 	i = 0;
 	while (map[i] != NULL)
-	{
-		//free (map[i]);
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			printf("%c", map[i][j]);
-			j++;
-		}
-		printf("\n");
 		i++;
-	}
-	//free (map);
-	ft_build_win(map);
-	return (0);
+	return (i);
 }
