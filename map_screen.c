@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 11:17:45 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/19 11:06:44 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/06/19 12:28:30 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ static t_images	ft_tiles(t_display vars)
 	t_images	tiles;
 	int			img_width;
 	int			img_height;
+
 	
-	tiles.img_ptr_col = mlx_xpm_file_to_image(vars.mlx_ptr, "tiles/fence.xpm", &img_width, &img_height);
+	tiles.img_ptr_col = mlx_xpm_file_to_image(vars.mlx_ptr, "tiles/metal.xpm", &img_width, &img_height);
 	tiles.img_ptr_exit = mlx_xpm_file_to_image(vars.mlx_ptr, "tiles/fence.xpm", &img_width, &img_height);
 	tiles.img_ptr_floor = mlx_xpm_file_to_image(vars.mlx_ptr, "tiles/floor.xpm", &img_width, &img_height);
-	tiles.img_ptr_player = mlx_xpm_file_to_image(vars.mlx_ptr, "tiles/metal.xpm", &img_width, &img_height);
+	tiles.img_ptr_player = mlx_xpm_file_to_image(vars.mlx_ptr, "tiles/player.xpm", &img_width, &img_height);
 	tiles.img_ptr_wall = mlx_xpm_file_to_image(vars.mlx_ptr, "tiles/brick.xpm", &img_width, &img_height);
 	return (tiles);
 }
