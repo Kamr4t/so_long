@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 08:35:30 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/19 09:44:23 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/06/24 09:50:23 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ static int	ft_map_object_count(int c)
 	static int	count_exit = 0;
 
 	if (c == 'C')
+	{
 		count_col++;
+		ft_col_count(1);
+	}
 	if (c == 'P')
 		count_player++;
 	if (c == 'E')
 		count_exit++;
 	if (c == 1)
 	{
-		//printf("Col %d\nPlayer: %d\nExit: %d\n", count_col, count_player, count_exit);
 		if (count_col == 0)
 			return (0);
 		if (count_player != 1)

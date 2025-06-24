@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:38:57 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/19 15:27:17 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/06/24 11:08:45 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,10 @@ int			ft_map_hight(char **map);
 
 //game move.c
 void		ft_move_logic(int key, void *param);
+
+//game logic.c
+int			ft_col_count(int add);
+void		ft_game_end(t_display vars);
+void		ft_move_count(void);
 
 #endif

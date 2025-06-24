@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 11:17:45 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/19 15:55:35 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/06/24 13:03:30 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static int ft_key_press(int key, void *param)
 		mlx_destroy_window(vars->mlx_ptr, vars->win_ptr);
 		exit (0);
 	}
-	if (key == 119)
-	{
+	if (key == 119 || key == 115 || key == 97 | key == 100)
 		ft_move_logic(key, param);
-	}
+	if (key == 65362|| key == 65364 || key == 65361 | key == 65363)
+		ft_move_logic(key, param);
 	return (0);
 }
 

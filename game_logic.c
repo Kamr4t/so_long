@@ -1,45 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   game_logic.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 17:28:45 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/24 09:51:34 by ancamara         ###   ########.fr       */
+/*   Created: 2025/06/24 09:47:19 by ancamara          #+#    #+#             */
+/*   Updated: 2025/06/24 11:09:11 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(void)
+int	ft_col_count(int add)
 {
-	char	**map;
-	int		fd;
+	static int	count = 0;
+
+	count += add;
+	return(count);
+}
+
+void	ft_game_end(t_display vars)
+{
 	size_t	i;
 	size_t	j;
+	int		count;
 
-	fd = open("map1.ber", O_RDONLY);
-	map = ft_map_array(fd);
-	if (map == NULL)
-		return (0);
-	int test = ft_map_check(map);
-	printf("%d\n", test);
+	count = 0;
 	i = 0;
-	while (map[i] != NULL)
+	while (vars.map[i] != NULL)
 	{
-		//free (map[i]);
 		j = 0;
-		while (map[i][j] != '\0')
+		while (vars.map[i][j] != '\0')
 		{
-			printf("%c", map[i][j]);
+			if (vars.map[i][j] == 'E')
+				count++;
 			j++;
 		}
-		printf("\n");
 		i++;
 	}
-	//free (map);
-	if (test == 1)
-		ft_build_win(map);
-	return (0);
+	if (count == 0)
+	{
+		mlx_destroy_window(vars.mlx_ptr, vars.win_ptr);
+		exit (0);
+	}
+}
+
+void	ft_move_count(void)
+{
+	static int	count = 0;
+
+	count++;
+	printf("Movement Count: %d\n", count);
 }
