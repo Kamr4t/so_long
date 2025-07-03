@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:28:45 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/24 09:51:34 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/03 12:22:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int	main(void)
 		printf("\n");
 		i++;
 	}
+	test = ft_map_dfs(fd);
+	printf("valid: %d\n", test);
 	//free (map);
-	if (test == 1)
-		ft_build_win(map);
+	// if (test == 1)
+	// 	ft_build_win(map);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_array.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:29:07 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/19 09:45:23 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/03 12:24:40 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ char	**ft_map_array(int fd)
 {
 	char	**map;
 	int		hight;
-	int		fd2;
 	int		i;
 
 	hight = ft_map_file_hight(fd);
-	fd2 = open("map1.ber", O_RDONLY);
+	close(fd);
+	fd = open("map1.ber", O_RDONLY);
 	map = malloc((hight + 1) * sizeof(char *));
 	if (!map)
 		return (0);
@@ -81,7 +81,7 @@ char	**ft_map_array(int fd)
 	i = 0;
 	while (i < hight)
 	{
-		map[i] = ft_map_line(fd2);
+		map[i] = ft_map_line(fd);
 		if (map[i] == NULL)
 		{
 			ft_free_map(map, i);

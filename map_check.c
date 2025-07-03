@@ -21,7 +21,8 @@ static int	ft_map_object_count(int c)
 	if (c == 'C')
 	{
 		count_col++;
-		ft_col_count(1);
+		//removed for map testing
+		// ft_col_count(1);
 	}
 	if (c == 'P')
 		count_player++;

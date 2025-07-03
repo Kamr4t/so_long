@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:38:57 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/24 11:08:45 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/03 12:22:05 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_images {
 #include <stdio.h>
 #include <fcntl.h>
 #include "get_next_line/get_next_line.h"
-#include "mlx.h"
+// #include "mlx.h"
 
 //main.c
 int			main(void);
@@ -43,6 +43,9 @@ char		*ft_free_map(char **map, int hight);
 //map check.c
 int			ft_map_check(char **map);
 
+//map valid
+int 		ft_map_dfs(int fd);
+
 //map screen.c
 int			ft_build_win(char **map);
 t_images	ft_tiles(t_display vars);
@@ -50,6 +53,8 @@ t_images	ft_tiles(t_display vars);
 //map helper.c
 int			ft_strlen_nl(char *s);
 int			ft_map_hight(char **map);
+int			ft_player_x(char **map);
+int			ft_player_y(char **map);
 
 //game move.c
 void		ft_move_logic(int key, void *param);
