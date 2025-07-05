@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:29:07 by ancamara          #+#    #+#             */
-/*   Updated: 2025/07/05 15:07:58 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/05 15:41:13 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ static char	*ft_map_line(int fd)
 	return (map);
 }
 
-char	**ft_map_array(int fd, int hight)
+char	**ft_map_array(int fd, int hight, char *map_dir)
 {
 	char	**map;
 	int		i;
 
 	close (fd);
-	fd = open("map1.ber", O_RDONLY);
+	fd = open(map_dir, O_RDONLY);
 	map = malloc((hight + 1) * sizeof(char *));
 	if (!map)
 	{

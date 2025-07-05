@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:38:57 by ancamara          #+#    #+#             */
-/*   Updated: 2025/07/05 15:21:20 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/05 15:42:23 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ typedef struct s_images {
 }	t_images;
 
 //main.c
-int			main(void);
+int			main(int argc, char **argv);
 
 //map array.c
-char		**ft_map_array(int fd, int hight);
+char		**ft_map_array(int fd, int hight, char *map_dir);
 void		ft_free_map(char **map, int hight);
 int			ft_map_file_hight(int fd);
 
@@ -52,7 +52,7 @@ int			ft_map_file_hight(int fd);
 int			ft_map_check(char **map);
 
 //map valid
-int			ft_map_dfs(int fd);
+int			ft_map_dfs(int fd, char *map_dir);
 
 //map screen.c
 int			ft_build_win(char **map);

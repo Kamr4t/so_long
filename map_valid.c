@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 11:28:34 by codespace         #+#    #+#             */
-/*   Updated: 2025/07/05 15:19:58 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/05 15:43:03 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	ft_valid_check(char **map)
 	return (1);
 }
 
-int	ft_map_dfs(int fd)
+int	ft_map_dfs(int fd, char *map_dir)
 {
 	char	**map;
 	int		x;
@@ -51,8 +51,8 @@ int	ft_map_dfs(int fd)
 	int		isvalid;
 
 	close(fd);
-	fd = open("map1.ber", O_RDONLY);
-	map = ft_map_array(fd, ft_map_file_hight(fd));
+	fd = open(map_dir, O_RDONLY);
+	map = ft_map_array(fd, ft_map_file_hight(fd), map_dir);
 	x = ft_player_x(map);
 	y = ft_player_y(map);
 	ft_flood_fill(map, y, x);
