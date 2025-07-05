@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_handle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 17:28:45 by ancamara          #+#    #+#             */
-/*   Updated: 2025/07/05 15:06:27 by ancamara         ###   ########.fr       */
+/*   Created: 2025/07/05 08:24:54 by ancamara          #+#    #+#             */
+/*   Updated: 2025/07/05 15:04:18 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(void)
+void	ft_error_handle(char *context)
 {
-	char	**map;
-	int		fd;
-	int		map_check;
+	ft_printf("[ERROR] %s: %s\n", context, strerror(errno));
+	exit (EXIT_FAILURE);
+}
 
-	fd = open("map1.ber", O_RDONLY);
-	map = ft_map_array(fd, ft_map_file_hight(fd));
-	map_check = ft_map_check(map);
-	if (map_check == 0)
-		ft_invalid_map("The map does not follow the Rules!");
-	map_check = ft_map_dfs(fd);
-	if (map_check == 0)
-		ft_invalid_map("Not possible to reach all Objects!");
-	ft_build_win(map);
-	return (0);
+void	ft_invalid_map(char *context)
+{
+	ft_printf("%s\n", context);
+	exit (EXIT_FAILURE);
 }

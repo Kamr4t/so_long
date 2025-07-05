@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_array.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:29:07 by ancamara          #+#    #+#             */
-/*   Updated: 2025/07/03 12:24:40 by codespace        ###   ########.fr       */
+/*   Updated: 2025/07/05 15:07:58 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	*ft_free_map(char **map, int hight)
+void	ft_free_map(char **map, int hight)
 {
 	int	i;
 
@@ -23,10 +23,10 @@ char	*ft_free_map(char **map, int hight)
 		i++;
 	}
 	free (map);
-	return (NULL);
+	return ;
 }
 
-static int	ft_map_file_hight(int fd)
+int	ft_map_file_hight(int fd)
 {
 	int		hight;
 	char	*line;
@@ -55,6 +55,8 @@ static char	*ft_map_line(int fd)
 	len = ft_strlen_nl(line);
 	i = 0;
 	map = malloc(len * sizeof(char) + 1);
+	if (map == NULL)
+		return (NULL);
 	while (i < len)
 	{
 		map[i] = line[i];
@@ -65,18 +67,19 @@ static char	*ft_map_line(int fd)
 	return (map);
 }
 
-char	**ft_map_array(int fd)
+char	**ft_map_array(int fd, int hight)
 {
 	char	**map;
-	int		hight;
 	int		i;
 
-	hight = ft_map_file_hight(fd);
-	close(fd);
+	close (fd);
 	fd = open("map1.ber", O_RDONLY);
 	map = malloc((hight + 1) * sizeof(char *));
 	if (!map)
-		return (0);
+	{
+		free (map);
+		ft_error_handle("map_array allocation failed");
+	}
 	map[hight] = NULL;
 	i = 0;
 	while (i < hight)
@@ -85,7 +88,7 @@ char	**ft_map_array(int fd)
 		if (map[i] == NULL)
 		{
 			ft_free_map(map, i);
-			return (NULL);
+			ft_error_handle("map_array allocation failed");
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 16:26:34 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/16 16:59:30 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/05 09:17:10 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 128
 # endif
 
 # include <unistd.h>

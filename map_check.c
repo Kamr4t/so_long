@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 08:35:30 by ancamara          #+#    #+#             */
-/*   Updated: 2025/06/24 09:50:23 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/05 11:06:21 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static int	ft_map_object_count(int c)
 	if (c == 'C')
 	{
 		count_col++;
-		//removed for map testing
-		// ft_col_count(1);
+		ft_col_count(1);
 	}
 	if (c == 'P')
 		count_player++;
@@ -51,6 +50,8 @@ static int	ft_map_valid(int c)
 	if (c == 'P')
 		return (1);
 	if (c == 'E')
+		return (1);
+	if (c == 'F')
 		return (1);
 	return (0);
 }
