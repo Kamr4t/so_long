@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:47:19 by ancamara          #+#    #+#             */
-/*   Updated: 2025/07/05 15:05:56 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/05 16:05:20 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,12 @@ char	*ft_move_count(void)
 	count++;
 	free (nbr);
 	return (move_count);
+}
+
+int	ft_win_close(void *param)
+{
+	(void)param;
+	ft_printf("Window close, thanks for playing!");
+	exit (0);
+	return (0);
 }

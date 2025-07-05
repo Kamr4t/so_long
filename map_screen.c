@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 11:17:45 by ancamara          #+#    #+#             */
-/*   Updated: 2025/07/05 15:18:08 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/05 16:41:25 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int	ft_build_win(char **map)
 		ft_error_handle("mlx_new_window Failed!");
 	ft_put_on_screen(display, ft_move_count());
 	mlx_key_hook(display.win_ptr, ft_key_press, &display);
+	mlx_hook(display.win_ptr, EVENT_DESTROY, 0, ft_win_close, &display);
 	mlx_loop(display.mlx_ptr);
 	return (0);
 }

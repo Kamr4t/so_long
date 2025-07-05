@@ -6,12 +6,13 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:38:57 by ancamara          #+#    #+#             */
-/*   Updated: 2025/07/05 15:42:23 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/05 16:05:30 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# define EVENT_DESTROY 17
 
 # include <stdlib.h>
 # include <fcntl.h>
@@ -77,5 +78,6 @@ int			ft_col_count(int add);
 void		ft_game_end(t_display vars, char *context);
 char		*ft_move_count(void);
 void		ft_free_images(t_display vars, t_images tiles);
+int			ft_win_close(void *param);
 
 #endif
