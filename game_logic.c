@@ -6,7 +6,7 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 09:47:19 by ancamara          #+#    #+#             */
-/*   Updated: 2025/07/05 16:05:20 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/06 11:54:34 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	ft_col_count(int add)
 void	ft_game_end(t_display vars, char *context)
 {
 	ft_printf("%s\n", context);
-	mlx_destroy_display(vars.mlx_ptr);
 	mlx_destroy_window(vars.mlx_ptr, vars.win_ptr);
+	mlx_destroy_display(vars.mlx_ptr);
 	ft_free_map(vars.map, ft_map_hight(vars.map));
 	exit (0);
 }
@@ -58,8 +58,13 @@ char	*ft_move_count(void)
 
 int	ft_win_close(void *param)
 {
-	(void)param;
-	ft_printf("Window close, thanks for playing!");
-	exit (0);
+	t_display	*vars_type_cast;
+	t_display	vars;
+
+	vars_type_cast = (t_display *)param;
+	vars.map = vars_type_cast->map;
+	vars.mlx_ptr = vars_type_cast->mlx_ptr;
+	vars.win_ptr = vars_type_cast->win_ptr;
+	ft_game_end(vars, "Thanks for playing!");
 	return (0);
 }

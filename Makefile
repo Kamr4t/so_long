@@ -1,9 +1,9 @@
 NAME = so_long
 
 CC = gcc
+
 CFLAGS = -Wall -Wextra -Werror
 
-# === Source Files ===
 GNL_SRCS = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c
 
 MY_SOURCES =	main.c \
@@ -19,7 +19,6 @@ MY_SOURCES =	main.c \
 
 MY_OBJECTS = $(MY_SOURCES:.c=.o)
 
-# === Libraries ===
 PRINTF_DIR = printf
 LIBFT_DIR = libft
 
@@ -27,10 +26,8 @@ PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 LIBS = $(PRINTF_LIB) $(LIBFT_LIB)
 
-# === MiniLibX ===
 MLX_FLAGS = -lmlx -lXext -lX11 -lm
 
-# === Build Rules ===
 all: $(NAME)
 
 $(NAME): $(MY_OBJECTS) $(LIBS)
@@ -45,7 +42,6 @@ $(PRINTF_LIB):
 $(LIBFT_LIB):
 	$(MAKE) -C $(LIBFT_DIR)
 
-# === Clean Rules ===
 clean:
 	rm -f $(MY_OBJECTS)
 	-$(MAKE) -C $(PRINTF_DIR) clean
