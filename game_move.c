@@ -6,25 +6,17 @@
 /*   By: ancamara <ancamara@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 13:14:48 by ancamara          #+#    #+#             */
-/*   Updated: 2025/07/06 11:53:23 by ancamara         ###   ########.fr       */
+/*   Updated: 2025/07/08 08:32:18 by ancamara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_player_death(t_display vars, t_images tiles)
-{
-	ft_free_images (vars, tiles);
-	ft_game_end(vars, "You died to the Goblin! Try Again!");
-}
-
 static void	ft_switch_pos_x(t_display vars, int x, int y, int direction)
 {
-	t_images	tiles;
 	int			game_end;
 
 	game_end = 0;
-	tiles = ft_tiles(vars);
 	if (vars.map[y][x + direction] == 'C')
 		ft_col_count(-1);
 	if (vars.map[y][x + direction] == 'E')
@@ -35,25 +27,22 @@ static void	ft_switch_pos_x(t_display vars, int x, int y, int direction)
 			game_end = 1;
 	}
 	if (vars.map[y][x + direction] == 'F')
-		ft_player_death(vars, tiles);
+		ft_game_end(vars, "You died to the Goblin!");
 	if (direction < 0)
 		vars.map[y][x + direction] = 'l';
 	else
 		vars.map[y][x + direction] = 'r';
 	vars.map[y][x] = '0';
 	ft_put_on_screen(vars, ft_move_count());
-	ft_free_images(vars, tiles);
 	if (game_end == 1)
 		ft_game_end(vars, "You escaped the Dungeon!");
 }
 
 static void	ft_switch_pos_y(t_display vars, int x, int y, int direction)
 {
-	t_images	tiles;
 	int			game_end;
 
 	game_end = 0;
-	tiles = ft_tiles(vars);
 	if (vars.map[y + direction][x] == 'C')
 		ft_col_count(-1);
 	if (vars.map[y + direction][x] == 'E')
@@ -71,7 +60,6 @@ static void	ft_switch_pos_y(t_display vars, int x, int y, int direction)
 		vars.map[y + direction][x] = 'P';
 	vars.map[y][x] = '0';
 	ft_put_on_screen(vars, ft_move_count());
-	ft_free_images(vars, tiles);
 	if (game_end == 1)
 		ft_game_end(vars, "You escaped the Dungeon!");
 }
